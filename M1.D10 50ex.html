@@ -97,6 +97,7 @@
         .ex18{
             display: none;
         }
+        table{width: 100%;}
         /* 19) Add a green border to each td */
         td{
             border: 1px solid green;
@@ -117,6 +118,13 @@
             <li>JavaScript</li>
             <li>React JS</li>
         </ol>
+        <!-- add button for 42) Add a button to hide every image on the page -->
+        <button type="button" onclick="removeImages()">Remove all image</button>
+        <!-- add Button for 43) Add a button to hide and show the table from the page -->
+        <button type="button" onclick="tableHide()">Hide Table</button>
+        <button type="button" onclick="tableShow()">Show Table</button>
+        <!--Show an Hide using one button-->
+        <button type="button" id="ShowHide" onclick="ShowHide()" value="1">Hide/Show table</button>
         <!-- 4) Create a table with 5 columns and 4 rows -->
         <!-- 5) Add an image to each second cell of every row -->
         <!-- 6) Add a anchor link for every image -->
@@ -147,7 +155,8 @@
                 <td>3</td>
                 <td><a href="https://dummyimage.com/100X100/000/fff"><img src="100X100.png"></a></td>
                 <td>30</td>
-                <td rowspan="2">Stockholm, Sweden <!--ex 7 marge 2 cell--></td>
+                <!--ex 7 marge 2 cell-->
+                <td rowspan="2">Stockholm, Sweden </td>
             </tr>
         </table>
         <!-- 8) Divide the page using a horizontal line -->
@@ -180,6 +189,7 @@
         <p class="ex17">This is Exercise 17</p>
         <!-- Result for 18) Create a class to hide a content -->
         <h2 class="ex18">I will not display in page :( </h2>
+        
         <!-- 10) Create a footer with some information about the page creator  -->
         <footer>Copyright &copy; 2021, Muslim Uddin Arju</footer>
 
@@ -337,8 +347,52 @@
                 })
         }
         // 42) Add a button to hide every image on the page
+        function removeImages(){
+            let images = document.getElementsByTagName('img');
+            let totalImages = images.length;
+            for (var i = 0; i < totalImages; i++) {
+                images[0].parentNode.removeChild(images[0]);
+            }
+        }
         // 43) Add a button to hide and show the table from the page
+        function tableShow(){
+            let getTable=document.getElementById('homework-table')
+            getTable.style.display="Block"
+        }
+        function tableHide(){
+            let getTable=document.getElementById('homework-table')
+            getTable.style.display="none"
+        }
+        function ShowHide(){
+            //check button
+            let button=document.getElementById('ShowHide')
+            //get table 
+            let getTable=document.getElementById('homework-table')
+            if(button.value==1){
+                getTable.style.display="none"
+                button.value=2
+            }else{
+                getTable.style.display="Block"
+                button.value=1
+            }
+
+        }
         // 44) Write a function to sum every number inside the TD (if the content is numeric)
+        function sumOfTd(){
+            let sum=0
+            let tdvalues=document.querySelectorAll('td')
+            for(let value of tdvalues){
+                let myValue=value.innerHTML
+                if(!isNaN(myValue)){
+                    console.log(myValue)
+                sum += parseInt(myValue,10)
+               }
+            }
+            return sum
+        }
+        console.log('ex 44:', sumOfTd()) //the output is 81 because my td containe (1+23+2+22+3+30)
+    
+
         // 45) Delete the last letter from the title each time the user clicks on it
         // 46) Change a single TD background color when the user clicks on it
         // 47) Add a button DELETE, on click it should delete a random TD from the page
